@@ -1,31 +1,20 @@
 package com.popov.introductiontoandroidalculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textEdit;
-    private Button button0;
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
-    private Button button7;
-    private Button button8;
-    private Button button9;
-    private Button buttonDel;
-    private Button buttonObelus;
-    private Button buttonMultiply;
-    private Button buttonMinus;
-    private Button buttonPlus;
-    private Button buttonEqually;
-    private Button buttonPoint;
+    private String field = "";
+    Calculator calculator = new Calculator();
+
+
 
 
     @Override
@@ -34,23 +23,161 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textEdit = findViewById(R.id.text_edit);
-        button0 = findViewById(R.id.key_0);
-        button1 = findViewById(R.id.key_1);
-        button2 = findViewById(R.id.key_2);
-        button3 = findViewById(R.id.key_3);
-        button4 = findViewById(R.id.key_4);
-        button5 = findViewById(R.id.key_5);
-        button6 = findViewById(R.id.key_6);
-        button7 = findViewById(R.id.key_7);
-        button8 = findViewById(R.id.key_8);
-        button9 = findViewById(R.id.key_9);
-        buttonDel = findViewById(R.id.key_del);
-        buttonObelus = findViewById(R.id.key_obelus);
-        buttonMultiply = findViewById(R.id.key_multiplication);
-        buttonMinus = findViewById(R.id.key_minus);
-        buttonPlus = findViewById(R.id.key_plus);
-        buttonEqually = findViewById(R.id.key_equals);
-        buttonPoint = findViewById(R.id.key_point);
+
+
+
+
+        findViewById(R.id.key_0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("0");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("1");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("2");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("3");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("4");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("5");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("6");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("7");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("8");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.initialization("9");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_del).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.setNumber1("del");
+                calculator.setNumber2("del");
+                calculator.setSign(0);
+                calculator.initialization("");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_obelus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.setSign(4);
+                calculator.initialization("");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_multiplication).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.setSign(3);
+                calculator.initialization("");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_plus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.setSign(1);
+                calculator.initialization("");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_minus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.setSign(2);
+                calculator.initialization("");
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_point).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                field = field + ".";
+                showResult();
+            }
+        });
+
+        findViewById(R.id.key_equals).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculator.operationsOfArithmetic();
+                showResult();
+            }
+        });
+    }
+
+    private void showResult(){
+        textEdit.setText(calculator.getNumber3());
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
     }
 }
