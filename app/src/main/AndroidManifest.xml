@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntroductionToAndroidСalculator">
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity" />
+        <activity
+            android:name=".Menu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
