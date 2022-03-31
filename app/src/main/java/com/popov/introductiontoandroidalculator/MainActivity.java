@@ -1,20 +1,18 @@
 package com.popov.introductiontoandroidalculator;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textEdit;
     private String field = "";
+    private static final String key = "calculator";
     Calculator calculator = new Calculator();
-
-
 
 
     @Override
@@ -25,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
         textEdit = findViewById(R.id.text_edit);
 
 
+        if (savedInstanceState != null) {
+            calculator = (Calculator) savedInstanceState.getSerializable(key);
+        }
 
+        showResult();
 
         findViewById(R.id.key_0).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,13 +173,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showResult(){
+    private void showResult() {
         textEdit.setText(calculator.getNumber3());
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putSerializable(key, calculator);
 
     }
 }
