@@ -1,13 +1,12 @@
 package com.popov.introductiontoandroidalculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Switch;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Menu extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class Menu extends AppCompatActivity {
 
         String theme = sharedPreferences.getString(THEMES_KEY, THEMES_DAY);
 
-        switch (theme){
+        switch (theme) {
             case THEMES_DAY:
                 setTheme(R.style.Theme_IntroductionToAndroidСalculator);
                 break;

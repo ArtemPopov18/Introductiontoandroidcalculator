@@ -24,7 +24,7 @@ public class Calculator implements Serializable {
         if (number2.equals("del")) {
             this.number2 = "";
         } else {
-            this.number2 = getNumber1() + number2;
+            this.number2 = getNumber2() + number2;
         }
     }
 
