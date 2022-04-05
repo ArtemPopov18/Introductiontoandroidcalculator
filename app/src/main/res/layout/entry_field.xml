@@ -6,12 +6,11 @@
 
 
     <TextView
+        android:id="@+id/text_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:gravity="end"
-        android:text="@string/entry_field"
-        android:textColor="@color/white" />
+        android:text="@string/entry_field" />
 
 
 </FrameLayout>
