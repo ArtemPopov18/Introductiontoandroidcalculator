@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String key = "calculator";
     private TextView textEdit;
     private String field = "";
-    private static final String key = "calculator";
-    Calculator calculator = new Calculator();
+    private Calculator calculator = new Calculator();
 
 
     @Override

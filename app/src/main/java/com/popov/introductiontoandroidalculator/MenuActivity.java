@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Menu extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
 
     private static final String THEMES_KEY = "THEMES_KEY";
@@ -37,7 +37,7 @@ public class Menu extends AppCompatActivity {
         findViewById(R.id.calculator).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent calculatorActivityIntent = new Intent(Menu.this, MainActivity.class);
+                Intent calculatorActivityIntent = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(calculatorActivityIntent);
             }
         });

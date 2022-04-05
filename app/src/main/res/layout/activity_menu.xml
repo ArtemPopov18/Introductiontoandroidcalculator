@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bullshit_сolor"
-    tools:context=".Menu">
+    tools:context=".MenuActivity">
 
     <Button
         android:id="@+id/calculator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calculator"
-        />
+        android:text="@string/calculator" />
 
     <Button
         android:id="@+id/themes_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/themes_day"
-        />
+        android:text="@string/themes_day" />
 
     <Button
         android:id="@+id/themes_night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/themes_night"
-        />
+        android:text="@string/themes_night" />
 
 </LinearLayout>
