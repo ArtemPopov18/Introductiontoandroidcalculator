@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.Menu).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent menuActivityIntent = new Intent(MainActivity.this, MenuActivity.class);
