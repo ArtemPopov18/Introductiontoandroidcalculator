@@ -15,7 +15,7 @@ public enum Theme {
     final int title;
     private final String key;
 
-    Theme(int title, int theme, String key) {
+    Theme( int theme, int title, String key) {
         this.title = title;
         this.theme = theme;
         this.key = key;
