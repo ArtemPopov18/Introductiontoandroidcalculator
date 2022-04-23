@@ -1,64 +1,60 @@
 package com.popov.introductiontoandroidalculator;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
+    public static final String SELECTED_THEME = "SELECTED_THEME";
+    public static final String CHOSEN_THEME = "CHOSEN_THEME";
 
-    private static final String THEMES_KEY = "THEMES_KEY";
-    private static final String THEMES_DAY = "THEMES_DAY";
-    private static final String THEMES_NIGHT = "THEMES_NIGHT";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
-
-        String theme = sharedPreferences.getString(THEMES_KEY, THEMES_DAY);
-
-        switch (theme) {
-            case THEMES_DAY:
-                setTheme(R.style.Theme_IntroductionToAndroidСalculator);
-                break;
-            default:
-                setTheme(R.style.Theme_IntroductionToAndroidСalculatorNight);
-                break;
-        }
 
         setContentView(R.layout.activity_menu);
 
-        findViewById(R.id.calculator).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent calculatorActivityIntent = new Intent(MenuActivity.this, MainActivity.class);
-                startActivity(calculatorActivityIntent);
+        LinearLayout root = findViewById(R.id.root);
+
+        Theme selectedTheme = (Theme) getIntent().getSerializableExtra(SELECTED_THEME);
+
+        for (Theme theme : Theme.values()) {
+            View itemView = getLayoutInflater().inflate(R.layout.item_them, root, false);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(CHOSEN_THEME, theme);
+
+                    setResult(Activity.RESULT_OK, resultIntent);
+
+                    finish();
+                }
+            });
+
+            TextView title = itemView.findViewById(R.id.theme_title);
+            ImageView check = itemView.findViewById(R.id.theme_checked);
+
+            title.setText(theme.getTitle());
+
+            if (theme.equals(selectedTheme)) {
+                check.setVisibility(View.VISIBLE);
+            } else {
+                check.setVisibility(View.GONE);
             }
-        });
 
-        findViewById(R.id.themes_day).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                sharedPreferences.edit().putString(THEMES_KEY, THEMES_DAY).apply();
-
-                recreate();
-            }
-        });
-
-        findViewById(R.id.themes_night).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                sharedPreferences.edit().putString(THEMES_KEY, THEMES_NIGHT).apply();
-                recreate();
-            }
-        });
+            root.addView(itemView);
+        }
     }
 }

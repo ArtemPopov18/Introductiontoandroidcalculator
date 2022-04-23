@@ -1,13 +1,20 @@
 package com.popov.introductiontoandroidalculator;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static final String key = "calculator";
     private TextView textEdit;
@@ -18,6 +25,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ThemeStorage storage = ThemeStorage.getInstance(getApplicationContext());
+
+        Theme savedTheme = storage.getTheme();
+
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent date = result.getData();
+
+                    Theme chosenTheme = (Theme) date.getSerializableExtra(MenuActivity.CHOSEN_THEME);
+
+                    storage.saveTheme(chosenTheme);
+
+                    recreate();
+                }
+            }
+        });
+
+
+        setTheme(savedTheme.getTheme());
+
         setContentView(R.layout.activity_main);
 
         textEdit = findViewById(R.id.text_edit);
@@ -169,6 +199,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 calculator.operationsOfArithmetic();
                 showResult();
+            }
+        });
+
+        findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menuActivityIntent = new Intent(MainActivity.this, MenuActivity.class);
+                menuActivityIntent.putExtra(MenuActivity.SELECTED_THEME, savedTheme);
+                launcher.launch(menuActivityIntent);
             }
         });
     }
